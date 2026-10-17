@@ -15,8 +15,8 @@
  */
 package me.zhengjie.modules.maint.rest;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import me.zhengjie.annotation.Log;
 import me.zhengjie.modules.maint.domain.App;
@@ -40,20 +40,20 @@ import java.util.Set;
 */
 @RestController
 @RequiredArgsConstructor
-@Api(tags = "运维：应用管理")
+@Tag(name = "运维：应用管理")
 @RequestMapping("/api/app")
 public class AppController {
 
     private final AppService appService;
 
-    @ApiOperation("导出应用数据")
+    @Operation(summary = "导出应用数据")
     @GetMapping(value = "/download")
     @PreAuthorize("@el.check('app:list')")
     public void exportApp(HttpServletResponse response, AppQueryCriteria criteria) throws IOException {
         appService.download(appService.queryAll(criteria), response);
     }
 
-    @ApiOperation(value = "查询应用")
+    @Operation(summary = "查询应用")
     @GetMapping
     @PreAuthorize("@el.check('app:list')")
     public ResponseEntity<PageResult<AppDto>> queryApp(AppQueryCriteria criteria, Pageable pageable){
@@ -61,7 +61,7 @@ public class AppController {
     }
 
     @Log("新增应用")
-    @ApiOperation(value = "新增应用")
+    @Operation(summary = "新增应用")
     @PostMapping
     @PreAuthorize("@el.check('app:add')")
     public ResponseEntity<Object> createApp(@Validated @RequestBody App resources){
@@ -70,7 +70,7 @@ public class AppController {
     }
 
     @Log("修改应用")
-    @ApiOperation(value = "修改应用")
+    @Operation(summary = "修改应用")
     @PutMapping
     @PreAuthorize("@el.check('app:edit')")
     public ResponseEntity<Object> updateApp(@Validated @RequestBody App resources){
@@ -79,7 +79,7 @@ public class AppController {
     }
 
     @Log("删除应用")
-    @ApiOperation(value = "删除应用")
+    @Operation(summary = "删除应用")
     @DeleteMapping
     @PreAuthorize("@el.check('app:del')")
     public ResponseEntity<Object> deleteApp(@RequestBody Set<Long> ids){

@@ -15,7 +15,7 @@
  */
 package me.zhengjie.modules.system.service.dto;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import me.zhengjie.annotation.Query;
 
@@ -26,7 +26,7 @@ import me.zhengjie.annotation.Query;
 @Data
 public class DictQueryCriteria {
 
-    @ApiModelProperty(value = "模糊查询")
+    @Schema(description = "模糊查询")
     @Query(blurry = "name,description")
     private String blurry;
 }

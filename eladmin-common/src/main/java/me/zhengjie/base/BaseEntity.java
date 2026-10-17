@@ -16,7 +16,7 @@
 package me.zhengjie.base;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -45,23 +45,23 @@ public class BaseEntity implements Serializable {
 
     @CreatedBy
     @Column(name = "create_by", updatable = false)
-    @ApiModelProperty(value = "创建人", hidden = true)
+    @Schema(description = "创建人", hidden = true)
     private String createBy;
 
     @LastModifiedBy
     @Column(name = "update_by")
-    @ApiModelProperty(value = "更新人", hidden = true)
+    @Schema(description = "更新人", hidden = true)
     private String updateBy;
 
     @CreationTimestamp
     @Column(name = "create_time", updatable = false)
-    @ApiModelProperty(value = "创建时间: yyyy-MM-dd HH:mm:ss", hidden = true)
+    @Schema(description = "创建时间: yyyy-MM-dd HH:mm:ss", hidden = true)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private Timestamp createTime;
 
     @UpdateTimestamp
     @Column(name = "update_time")
-    @ApiModelProperty(value = "更新时间: yyyy-MM-dd HH:mm:ss", hidden = true)
+    @Schema(description = "更新时间: yyyy-MM-dd HH:mm:ss", hidden = true)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private Timestamp updateTime;
 

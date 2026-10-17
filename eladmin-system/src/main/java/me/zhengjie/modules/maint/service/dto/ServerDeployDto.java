@@ -15,7 +15,7 @@
  */
 package me.zhengjie.modules.maint.service.dto;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 import me.zhengjie.base.BaseDTO;
@@ -30,22 +30,22 @@ import java.util.Objects;
 @Setter
 public class ServerDeployDto extends BaseDTO implements Serializable {
 
-	@ApiModelProperty(value = "ID")
+	@Schema(description = "ID")
     private Long id;
 
-	@ApiModelProperty(value = "名称")
+	@Schema(description = "名称")
 	private String name;
 
-	@ApiModelProperty(value = "IP")
+	@Schema(description = "IP")
 	private String ip;
 
-	@ApiModelProperty(value = "端口")
+	@Schema(description = "端口")
 	private Integer port;
 
-	@ApiModelProperty(value = "账号")
+	@Schema(description = "账号")
 	private String account;
 
-	@ApiModelProperty(value = "密码")
+	@Schema(description = "密码")
 	private String password;
 
 	@Override

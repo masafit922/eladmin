@@ -15,8 +15,8 @@
  */
 package me.zhengjie.rest;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import me.zhengjie.domain.ColumnInfo;
 import me.zhengjie.domain.vo.TableInfo;
@@ -40,7 +40,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/generator")
-@Api(tags = "系统：代码生成管理")
+@Tag(name = "系统：代码生成管理")
 public class GeneratorController {
 
     private final GeneratorService generatorService;
@@ -49,13 +49,13 @@ public class GeneratorController {
     @Value("${generator.enabled}")
     private Boolean generatorEnabled;
 
-    @ApiOperation("查询数据库数据")
+    @Operation(summary = "查询数据库数据")
     @GetMapping(value = "/tables/all")
     public ResponseEntity<Object> queryAllTables(){
         return new ResponseEntity<>(generatorService.getTables(), HttpStatus.OK);
     }
 
-    @ApiOperation("查询数据库数据")
+    @Operation(summary = "查询数据库数据")
     @GetMapping(value = "/tables")
     public ResponseEntity<PageResult<TableInfo>> queryTables(@RequestParam(defaultValue = "") String name,
                                                              @RequestParam(defaultValue = "0")Integer page,
@@ -64,21 +64,21 @@ public class GeneratorController {
         return new ResponseEntity<>(generatorService.getTables(name,startEnd), HttpStatus.OK);
     }
 
-    @ApiOperation("查询字段数据")
+    @Operation(summary = "查询字段数据")
     @GetMapping(value = "/columns")
     public ResponseEntity<PageResult<ColumnInfo>> queryColumns(@RequestParam String tableName){
         List<ColumnInfo> columnInfos = generatorService.getColumns(tableName);
         return new ResponseEntity<>(PageUtil.toPage(columnInfos,columnInfos.size()), HttpStatus.OK);
     }
 
-    @ApiOperation("保存字段数据")
+    @Operation(summary = "保存字段数据")
     @PutMapping
     public ResponseEntity<HttpStatus> saveColumn(@RequestBody List<ColumnInfo> columnInfos){
         generatorService.save(columnInfos);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @ApiOperation("同步字段数据")
+    @Operation(summary = "同步字段数据")
     @PostMapping(value = "sync")
     public ResponseEntity<HttpStatus> syncColumn(@RequestBody List<String> tables){
         for (String table : tables) {
@@ -87,7 +87,7 @@ public class GeneratorController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @ApiOperation("生成代码")
+    @Operation(summary = "生成代码")
     @PostMapping(value = "/{tableName}/{type}")
     public ResponseEntity<Object> generatorCode(@PathVariable String tableName, @PathVariable Integer type, HttpServletRequest request, HttpServletResponse response){
         if(!generatorEnabled && type == 0){

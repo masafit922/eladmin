@@ -15,7 +15,7 @@
  */
 package me.zhengjie.modules.system.service.dto;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import me.zhengjie.annotation.DataPermission;
 import me.zhengjie.annotation.Query;
@@ -30,23 +30,23 @@ import java.util.List;
 @DataPermission(fieldName = "id")
 public class DeptQueryCriteria{
 
-    @ApiModelProperty(value = "名称")
+    @Schema(description = "名称")
     @Query(type = Query.Type.INNER_LIKE)
     private String name;
 
     @Query
-    @ApiModelProperty(value = "是否启用")
+    @Schema(description = "是否启用")
     private Boolean enabled;
 
     @Query
-    @ApiModelProperty(value = "上级部门")
+    @Schema(description = "上级部门")
     private Long pid;
 
-    @ApiModelProperty(value = "PID空查询", hidden = true)
+    @Schema(description = "PID空查询", hidden = true)
     @Query(type = Query.Type.IS_NULL, propName = "pid")
     private Boolean pidIsNull;
 
-    @ApiModelProperty(value = "创建时间")
+    @Schema(description = "创建时间")
     @Query(type = Query.Type.BETWEEN)
     private List<Timestamp> createTime;
 }

@@ -16,7 +16,7 @@
 package me.zhengjie.modules.security.service.dto;
 
 import com.alibaba.fastjson2.annotation.JSONField;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import me.zhengjie.modules.system.service.dto.UserDto;
@@ -33,13 +33,13 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class JwtUserDto implements UserDetails {
 
-    @ApiModelProperty(value = "用户")
+    @Schema(description = "用户")
     private final UserDto user;
 
-    @ApiModelProperty(value = "数据权限")
+    @Schema(description = "数据权限")
     private final List<Long> dataScopes;
 
-    @ApiModelProperty(value = "角色权限")
+    @Schema(description = "角色权限")
     private final List<AuthorityDto> authorities;
 
     public Set<String> getRoles() {

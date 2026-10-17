@@ -15,8 +15,8 @@
  */
 package me.zhengjie.modules.quartz.rest;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.zhengjie.annotation.Log;
@@ -45,34 +45,34 @@ import java.util.Set;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/jobs")
-@Api(tags = "系统:定时任务管理")
+@Tag(name = "系统:定时任务管理")
 public class QuartzJobController {
 
     private static final String ENTITY_NAME = "quartzJob";
     private final QuartzJobService quartzJobService;
 
-    @ApiOperation("查询定时任务")
+    @Operation(summary = "查询定时任务")
     @GetMapping
     @PreAuthorize("@el.check('timing:list')")
     public ResponseEntity<PageResult<QuartzJob>> queryQuartzJob(JobQueryCriteria criteria, Pageable pageable){
         return new ResponseEntity<>(quartzJobService.queryAll(criteria,pageable), HttpStatus.OK);
     }
 
-    @ApiOperation("导出任务数据")
+    @Operation(summary = "导出任务数据")
     @GetMapping(value = "/download")
     @PreAuthorize("@el.check('timing:list')")
     public void exportQuartzJob(HttpServletResponse response, JobQueryCriteria criteria) throws IOException {
         quartzJobService.download(quartzJobService.queryAll(criteria), response);
     }
 
-    @ApiOperation("导出日志数据")
+    @Operation(summary = "导出日志数据")
     @GetMapping(value = "/logs/download")
     @PreAuthorize("@el.check('timing:list')")
     public void exportQuartzJobLog(HttpServletResponse response, JobQueryCriteria criteria) throws IOException {
         quartzJobService.downloadLog(quartzJobService.queryAllLog(criteria), response);
     }
 
-    @ApiOperation("查询任务执行日志")
+    @Operation(summary = "查询任务执行日志")
     @GetMapping(value = "/logs")
     @PreAuthorize("@el.check('timing:list')")
     public ResponseEntity<PageResult<QuartzLog>> queryQuartzJobLog(JobQueryCriteria criteria, Pageable pageable){
@@ -80,7 +80,7 @@ public class QuartzJobController {
     }
 
     @Log("新增定时任务")
-    @ApiOperation("新增定时任务")
+    @Operation(summary = "新增定时任务")
     @PostMapping
     @PreAuthorize("@el.check('timing:add')")
     public ResponseEntity<Object> createQuartzJob(@Validated @RequestBody QuartzJob resources){
@@ -94,7 +94,7 @@ public class QuartzJobController {
     }
 
     @Log("修改定时任务")
-    @ApiOperation("修改定时任务")
+    @Operation(summary = "修改定时任务")
     @PutMapping
     @PreAuthorize("@el.check('timing:edit')")
     public ResponseEntity<Object> updateQuartzJob(@Validated(QuartzJob.Update.class) @RequestBody QuartzJob resources){
@@ -105,7 +105,7 @@ public class QuartzJobController {
     }
 
     @Log("更改定时任务状态")
-    @ApiOperation("更改定时任务状态")
+    @Operation(summary = "更改定时任务状态")
     @PutMapping(value = "/{id}")
     @PreAuthorize("@el.check('timing:edit')")
     public ResponseEntity<Object> updateQuartzJobStatus(@PathVariable Long id){
@@ -114,7 +114,7 @@ public class QuartzJobController {
     }
 
     @Log("执行定时任务")
-    @ApiOperation("执行定时任务")
+    @Operation(summary = "执行定时任务")
     @PutMapping(value = "/exec/{id}")
     @PreAuthorize("@el.check('timing:edit')")
     public ResponseEntity<Object> executionQuartzJob(@PathVariable Long id){
@@ -123,7 +123,7 @@ public class QuartzJobController {
     }
 
     @Log("删除定时任务")
-    @ApiOperation("删除定时任务")
+    @Operation(summary = "删除定时任务")
     @DeleteMapping
     @PreAuthorize("@el.check('timing:del')")
     public ResponseEntity<Object> deleteQuartzJob(@RequestBody Set<Long> ids){

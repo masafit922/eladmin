@@ -30,7 +30,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import io.swagger.annotations.*;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.multipart.MultipartFile;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -41,20 +42,20 @@ import java.io.IOException;
 */
 @RestController
 @RequiredArgsConstructor
-@Api(tags = "工具：本地存储管理")
+@Tag(name = "工具：本地存储管理")
 @RequestMapping("/api/localStorage")
 public class LocalStorageController {
 
     private final LocalStorageService localStorageService;
 
     @GetMapping
-    @ApiOperation("查询文件")
+    @Operation(summary = "查询文件")
     @PreAuthorize("@el.check('storage:list')")
     public ResponseEntity<PageResult<LocalStorageDto>> queryFile(LocalStorageQueryCriteria criteria, Pageable pageable){
         return new ResponseEntity<>(localStorageService.queryAll(criteria,pageable),HttpStatus.OK);
     }
 
-    @ApiOperation("导出数据")
+    @Operation(summary = "导出数据")
     @GetMapping(value = "/download")
     @PreAuthorize("@el.check('storage:list')")
     public void exportFile(HttpServletResponse response, LocalStorageQueryCriteria criteria) throws IOException {
@@ -62,14 +63,14 @@ public class LocalStorageController {
     }
 
     @PostMapping
-    @ApiOperation("上传文件")
+    @Operation(summary = "上传文件")
     @PreAuthorize("@el.check('storage:add')")
     public ResponseEntity<Object> createFile(@RequestParam String name, @RequestParam("file") MultipartFile file){
         localStorageService.create(name, file);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @ApiOperation("上传图片")
+    @Operation(summary = "上传图片")
     @PostMapping("/pictures")
     public ResponseEntity<LocalStorage> uploadPicture(@RequestParam MultipartFile file){
         // 判断文件是否为图片
@@ -83,7 +84,7 @@ public class LocalStorageController {
 
     @PutMapping
     @Log("修改文件")
-    @ApiOperation("修改文件")
+    @Operation(summary = "修改文件")
     @PreAuthorize("@el.check('storage:edit')")
     public ResponseEntity<Object> updateFile(@Validated @RequestBody LocalStorage resources){
         localStorageService.update(resources);
@@ -92,7 +93,7 @@ public class LocalStorageController {
 
     @Log("删除文件")
     @DeleteMapping
-    @ApiOperation("多选删除")
+    @Operation(summary = "多选删除")
     public ResponseEntity<Object> deleteFile(@RequestBody Long[] ids) {
         localStorageService.deleteAll(ids);
         return new ResponseEntity<>(HttpStatus.OK);

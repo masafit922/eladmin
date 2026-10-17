@@ -17,7 +17,7 @@ package me.zhengjie.domain;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import me.zhengjie.base.BaseEntity;
@@ -38,32 +38,32 @@ public class S3Storage extends BaseEntity implements Serializable {
 
     @Id
     @Column(name = "storage_id")
-    @ApiModelProperty(value = "ID", hidden = true)
+    @Schema(description = "ID", hidden = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
-    @ApiModelProperty(value = "文件名称")
+    @Schema(description = "文件名称")
     private String fileName;
 
     @NotBlank
-    @ApiModelProperty(value = "真实存储的名称")
+    @Schema(description = "真实存储的名称")
     private String fileRealName;
 
     @NotBlank
-    @ApiModelProperty(value = "文件大小")
+    @Schema(description = "文件大小")
     private String fileSize;
 
     @NotBlank
-    @ApiModelProperty(value = "文件MIME 类型")
+    @Schema(description = "文件MIME 类型")
     private String fileMimeType;
 
     @NotBlank
-    @ApiModelProperty(value = "文件类型")
+    @Schema(description = "文件类型")
     private String fileType;
 
     @NotBlank
-    @ApiModelProperty(value = "文件路径")
+    @Schema(description = "文件路径")
     private String filePath;
 
     public void copy(S3Storage source){

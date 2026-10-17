@@ -102,6 +102,23 @@ generator:
 swagger:
   enabled: true
 
+# springdoc-openapi + knife4j，接口文档地址：/doc.html
+springdoc:
+  api-docs:
+    enabled: ${swagger.enabled}
+  swagger-ui:
+    enabled: ${swagger.enabled}
+  # 与 springfox 行为保持一致：未加注解的查询对象 (如 Pageable、QueryCriteria) 展开为独立的请求参数
+  default-flat-param-object: true
+
+# 升级前未开启 knife4j 增强模式，此处保持一致。
+# 注意：knife4j 4.5.0 基于 springdoc 2.3.0 编译，开启增强模式（enable: true）时
+# Knife4jOpenApiCustomizer 会因 springdoc 2.5+ 的 getGroupConfigs() 签名变化抛出 NoSuchMethodError
+knife4j:
+  enable: false
+  setting:
+    language: zh_cn
+
 # 文件存储路径
 file:
   mac:
