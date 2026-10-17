@@ -19,13 +19,13 @@ import lombok.Data;
 import cn.hutool.core.bean.BeanUtil;
 import io.swagger.annotations.ApiModelProperty;
 import cn.hutool.core.bean.copier.CopyOptions;
-import javax.persistence.*;
+import jakarta.persistence.*;
 <#if isNotNullColumns??>
-import javax.validation.constraints.*;
+import jakarta.validation.constraints.*;
 </#if>
 <#if hasDateAnnotation>
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import org.hibernate.annotations.*;
 </#if>
 <#if hasTimestamp>
@@ -48,10 +48,10 @@ import java.math.BigDecimal;
     </#list>
 </#if>
 <#if notBlankUsed>
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 </#if>
 <#if notNullUsed>
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 </#if>
 import java.io.Serializable;
 
