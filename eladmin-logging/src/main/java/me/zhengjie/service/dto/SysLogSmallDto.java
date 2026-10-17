@@ -15,7 +15,7 @@
  */
 package me.zhengjie.service.dto;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -27,21 +27,21 @@ import java.sql.Timestamp;
 @Data
 public class SysLogSmallDto implements Serializable {
 
-    @ApiModelProperty(value = "描述")
+    @Schema(description = "描述")
     private String description;
 
-    @ApiModelProperty(value = "请求IP")
+    @Schema(description = "请求IP")
     private String requestIp;
 
-    @ApiModelProperty(value = "耗时")
+    @Schema(description = "耗时")
     private Long time;
 
-    @ApiModelProperty(value = "地址")
+    @Schema(description = "地址")
     private String address;
 
-    @ApiModelProperty(value = "浏览器")
+    @Schema(description = "浏览器")
     private String browser;
 
-    @ApiModelProperty(value = "创建时间")
+    @Schema(description = "创建时间")
     private Timestamp createTime;
 }

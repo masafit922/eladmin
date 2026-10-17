@@ -15,13 +15,13 @@
  */
 package me.zhengjie.modules.maint.domain;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
 import lombok.Getter;
 import lombok.Setter;
 import me.zhengjie.base.BaseEntity;
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -37,23 +37,23 @@ public class ServerDeploy extends BaseEntity implements Serializable {
 
     @Id
     @Column(name = "server_id")
-    @ApiModelProperty(value = "ID", hidden = true)
+    @Schema(description = "ID", hidden = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ApiModelProperty(value = "服务器名称")
+    @Schema(description = "服务器名称")
     private String name;
 
-    @ApiModelProperty(value = "IP")
+    @Schema(description = "IP")
     private String ip;
 
-    @ApiModelProperty(value = "端口")
+    @Schema(description = "端口")
     private Integer port;
 
-    @ApiModelProperty(value = "账号")
+    @Schema(description = "账号")
     private String account;
 
-    @ApiModelProperty(value = "密码")
+    @Schema(description = "密码")
     private String password;
 
     public void copy(ServerDeploy source){

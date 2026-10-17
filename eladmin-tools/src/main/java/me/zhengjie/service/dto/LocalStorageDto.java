@@ -15,7 +15,7 @@
  */
 package me.zhengjie.service.dto;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 import me.zhengjie.base.BaseDTO;
@@ -29,21 +29,21 @@ import java.io.Serializable;
 @Setter
 public class LocalStorageDto extends BaseDTO implements Serializable {
 
-    @ApiModelProperty(value = "ID")
+    @Schema(description = "ID")
     private Long id;
 
-    @ApiModelProperty(value = "真实文件名")
+    @Schema(description = "真实文件名")
     private String realName;
 
-    @ApiModelProperty(value = "文件名")
+    @Schema(description = "文件名")
     private String name;
 
-    @ApiModelProperty(value = "后缀")
+    @Schema(description = "后缀")
     private String suffix;
 
-    @ApiModelProperty(value = "文件类型")
+    @Schema(description = "文件类型")
     private String type;
 
-    @ApiModelProperty(value = "文件大小")
+    @Schema(description = "文件大小")
     private String size;
 }

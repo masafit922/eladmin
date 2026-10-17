@@ -16,7 +16,7 @@
 package me.zhengjie.modules.system.service.dto;
 
 import com.alibaba.fastjson2.annotation.JSONField;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 import me.zhengjie.base.BaseDTO;
@@ -32,52 +32,52 @@ import java.util.Set;
 @Setter
 public class UserDto extends BaseDTO implements Serializable {
 
-    @ApiModelProperty(value = "ID")
+    @Schema(description = "ID")
     private Long id;
 
-    @ApiModelProperty(value = "角色")
+    @Schema(description = "角色")
     private Set<RoleSmallDto> roles;
 
-    @ApiModelProperty(value = "岗位")
+    @Schema(description = "岗位")
     private Set<JobSmallDto> jobs;
 
-    @ApiModelProperty(value = "部门")
+    @Schema(description = "部门")
     private DeptSmallDto dept;
 
-    @ApiModelProperty(value = "部门ID")
+    @Schema(description = "部门ID")
     private Long deptId;
 
-    @ApiModelProperty(value = "用户名")
+    @Schema(description = "用户名")
     private String username;
 
-    @ApiModelProperty(value = "昵称")
+    @Schema(description = "昵称")
     private String nickName;
 
-    @ApiModelProperty(value = "邮箱")
+    @Schema(description = "邮箱")
     private String email;
 
-    @ApiModelProperty(value = "电话")
+    @Schema(description = "电话")
     private String phone;
 
-    @ApiModelProperty(value = "性别")
+    @Schema(description = "性别")
     private String gender;
 
-    @ApiModelProperty(value = "头像")
+    @Schema(description = "头像")
     private String avatarName;
 
-    @ApiModelProperty(value = "头像路径")
+    @Schema(description = "头像路径")
     private String avatarPath;
 
-    @ApiModelProperty(value = "密码")
+    @Schema(description = "密码")
     private String password;
 
-    @ApiModelProperty(value = "是否启用")
+    @Schema(description = "是否启用")
     private Boolean enabled;
 
-    @ApiModelProperty(value = "管理员")
+    @Schema(description = "管理员")
     @JSONField(serialize = false)
     private Boolean isAdmin = false;
 
-    @ApiModelProperty(value = "密码重置时间")
+    @Schema(description = "密码重置时间")
     private Date pwdResetTime;
 }

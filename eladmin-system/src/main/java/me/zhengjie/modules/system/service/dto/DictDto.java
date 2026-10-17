@@ -15,7 +15,7 @@
  */
 package me.zhengjie.modules.system.service.dto;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 import me.zhengjie.base.BaseDTO;
@@ -30,15 +30,15 @@ import java.util.List;
 @Setter
 public class DictDto extends BaseDTO implements Serializable {
 
-    @ApiModelProperty(value = "ID")
+    @Schema(description = "ID")
     private Long id;
 
-    @ApiModelProperty(value = "字典详情")
+    @Schema(description = "字典详情")
     private List<DictDetailDto> dictDetails;
 
-    @ApiModelProperty(value = "名称")
+    @Schema(description = "名称")
     private String name;
 
-    @ApiModelProperty(value = "描述")
+    @Schema(description = "描述")
     private String description;
 }

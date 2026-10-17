@@ -15,7 +15,7 @@
 */
 package me.zhengjie.service.dto;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import me.zhengjie.annotation.Query;
 import java.sql.Timestamp;
@@ -29,11 +29,11 @@ import java.util.List;
 public class S3StorageQueryCriteria {
 
     @Query(type =  Query.Type.INNER_LIKE)
-    @ApiModelProperty(value = "文件名称")
+    @Schema(description = "文件名称")
     private String fileName;
 
     @Query(type = Query.Type.BETWEEN)
-    @ApiModelProperty(value = "创建时间")
+    @Schema(description = "创建时间")
     private List<Timestamp> createTime;
 
 }

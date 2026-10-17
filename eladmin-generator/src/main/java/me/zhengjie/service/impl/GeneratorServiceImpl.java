@@ -31,14 +31,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -89,7 +88,8 @@ public class GeneratorServiceImpl implements GeneratorService {
                 "where table_schema = (select database()) and table_name like :table";
         Query queryCount = em.createNativeQuery(countSql);
         queryCount.setParameter("table", StringUtils.isNotBlank(name) ? ("%" + name + "%") : "%%");
-        BigInteger totalElements = (BigInteger) queryCount.getSingleResult();
+        // Hibernate 6 将 count 结果映射为 Long（Hibernate 5 为 BigInteger），统一按 Number 处理
+        Number totalElements = (Number) queryCount.getSingleResult();
         return PageUtil.toPage(tableInfos, totalElements.longValue());
     }
 

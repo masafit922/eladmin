@@ -15,7 +15,7 @@
  */
 package me.zhengjie.modules.maint.service.dto;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 import me.zhengjie.base.BaseDTO;
@@ -29,27 +29,27 @@ import java.io.Serializable;
 @Setter
 public class AppDto extends BaseDTO implements Serializable {
 
-	@ApiModelProperty(value = "ID")
+	@Schema(description = "ID")
     private Long id;
 
-	@ApiModelProperty(value = "应用名称")
+	@Schema(description = "应用名称")
 	private String name;
 
-	@ApiModelProperty(value = "端口")
+	@Schema(description = "端口")
 	private Integer port;
 
-	@ApiModelProperty(value = "上传目录")
+	@Schema(description = "上传目录")
 	private String uploadPath;
 
-	@ApiModelProperty(value = "部署目录")
+	@Schema(description = "部署目录")
 	private String deployPath;
 
-	@ApiModelProperty(value = "备份目录")
+	@Schema(description = "备份目录")
 	private String backupPath;
 
-	@ApiModelProperty(value = "启动脚本")
+	@Schema(description = "启动脚本")
 	private String startScript;
 
-	@ApiModelProperty(value = "部署脚本")
+	@Schema(description = "部署脚本")
 	private String deployScript;
 }

@@ -15,7 +15,7 @@
  */
 package me.zhengjie.modules.system.service.dto;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 import me.zhengjie.base.BaseDTO;
@@ -31,38 +31,38 @@ import java.util.Objects;
 @Setter
 public class DeptDto extends BaseDTO implements Serializable {
 
-    @ApiModelProperty(value = "ID")
+    @Schema(description = "ID")
     private Long id;
 
-    @ApiModelProperty(value = "名称")
+    @Schema(description = "名称")
     private String name;
 
-    @ApiModelProperty(value = "是否启用")
+    @Schema(description = "是否启用")
     private Boolean enabled;
 
-    @ApiModelProperty(value = "排序")
+    @Schema(description = "排序")
     private Integer deptSort;
 
-    @ApiModelProperty(value = "子部门")
+    @Schema(description = "子部门")
     private List<DeptDto> children;
 
-    @ApiModelProperty(value = "上级部门")
+    @Schema(description = "上级部门")
     private Long pid;
 
-    @ApiModelProperty(value = "子部门数量", hidden = true)
+    @Schema(description = "子部门数量", hidden = true)
     private Integer subCount;
 
-    @ApiModelProperty(value = "是否有子节点")
+    @Schema(description = "是否有子节点")
     public Boolean getHasChildren() {
         return subCount > 0;
     }
 
-    @ApiModelProperty(value = "是否为叶子")
+    @Schema(description = "是否为叶子")
     public Boolean getLeaf() {
         return subCount <= 0;
     }
 
-    @ApiModelProperty(value = "部门全名")
+    @Schema(description = "部门全名")
     public String getLabel() {
         return name;
     }

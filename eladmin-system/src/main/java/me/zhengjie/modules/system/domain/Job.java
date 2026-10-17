@@ -15,13 +15,13 @@
  */
 package me.zhengjie.modules.system.domain;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 import me.zhengjie.base.BaseEntity;
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -38,20 +38,20 @@ public class Job extends BaseEntity implements Serializable {
     @Id
     @Column(name = "job_id")
     @NotNull(groups = Update.class)
-    @ApiModelProperty(value = "ID", hidden = true)
+    @Schema(description = "ID", hidden = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
-    @ApiModelProperty(value = "岗位名称")
+    @Schema(description = "岗位名称")
     private String name;
 
     @NotNull
-    @ApiModelProperty(value = "岗位排序")
+    @Schema(description = "岗位排序")
     private Long jobSort;
 
     @NotNull
-    @ApiModelProperty(value = "是否启用")
+    @Schema(description = "是否启用")
     private Boolean enabled;
 
     @Override

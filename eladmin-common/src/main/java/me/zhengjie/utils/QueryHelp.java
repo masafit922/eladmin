@@ -21,7 +21,7 @@ import cn.hutool.core.util.ObjectUtil;
 import lombok.extern.slf4j.Slf4j;
 import me.zhengjie.annotation.DataPermission;
 import me.zhengjie.annotation.Query;
-import javax.persistence.criteria.*;
+import jakarta.persistence.criteria.*;
 import java.lang.reflect.Field;
 import java.util.*;
 

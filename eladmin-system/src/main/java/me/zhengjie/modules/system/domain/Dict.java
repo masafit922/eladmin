@@ -15,13 +15,13 @@
  */
 package me.zhengjie.modules.system.domain;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 import me.zhengjie.base.BaseEntity;
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
 
@@ -38,7 +38,7 @@ public class Dict extends BaseEntity implements Serializable {
     @Id
     @Column(name = "dict_id")
     @NotNull(groups = Update.class)
-    @ApiModelProperty(value = "ID", hidden = true)
+    @Schema(description = "ID", hidden = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -46,9 +46,9 @@ public class Dict extends BaseEntity implements Serializable {
     private List<DictDetail> dictDetails;
 
     @NotBlank
-    @ApiModelProperty(value = "名称")
+    @Schema(description = "名称")
     private String name;
 
-    @ApiModelProperty(value = "描述")
+    @Schema(description = "描述")
     private String description;
 }
