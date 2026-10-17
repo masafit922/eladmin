@@ -15,7 +15,7 @@
  */
 package me.zhengjie.service.impl;
 
-import cn.hutool.extra.mail.Mail;
+import cn.hutool.extra.mail.JakartaMail;
 import cn.hutool.extra.mail.MailAccount;
 import lombok.RequiredArgsConstructor;
 import me.zhengjie.domain.EmailConfig;
@@ -92,7 +92,7 @@ public class EmailServiceImpl implements EmailService {
         // 发送
         try {
             int size = emailVo.getTos().size();
-            Mail.create(account)
+            JakartaMail.create(account)
                     .setTos(emailVo.getTos().toArray(new String[size]))
                     .setTitle(emailVo.getSubject())
                     .setContent(content)

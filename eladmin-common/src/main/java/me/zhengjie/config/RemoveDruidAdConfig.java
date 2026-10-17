@@ -1,7 +1,7 @@
 package me.zhengjie.config;
 
-import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure;
-import com.alibaba.druid.spring.boot.autoconfigure.properties.DruidStatProperties;
+import com.alibaba.druid.spring.boot3.autoconfigure.DruidDataSourceAutoConfigure;
+import com.alibaba.druid.spring.boot3.autoconfigure.properties.DruidStatProperties;
 import com.alibaba.druid.util.Utils;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -31,7 +31,7 @@ public class RemoveDruidAdConfig {
     /**
      * 方法名: removeDruidAdFilterRegistrationBean
      * 方法描述 除去页面底部的广告
-     * @param properties com.alibaba.druid.spring.boot.autoconfigure.properties.DruidStatProperties
+     * @param properties com.alibaba.druid.spring.boot3.autoconfigure.properties.DruidStatProperties
      * @return org.springframework.boot.web.servlet.FilterRegistrationBean
      */
     @Bean

@@ -28,6 +28,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 import static org.springframework.http.HttpStatus.*;
 
 /**
@@ -46,6 +47,14 @@ public class GlobalExceptionHandler {
         // 打印堆栈信息
         log.error(ThrowableUtil.getStackTrace(e));
         return buildResponseEntity(ApiError.error(e.getMessage()));
+    }
+
+    /**
+     * 未匹配到接口：Spring 6.1+ 抛出 NoResourceFoundException，保持与升级前一致返回 404
+     */
+    @ExceptionHandler(NoResourceFoundException.class)
+    public ResponseEntity<ApiError> noResourceFoundException(NoResourceFoundException e){
+        return buildResponseEntity(ApiError.error(NOT_FOUND.value(), e.getMessage()));
     }
 
     /**

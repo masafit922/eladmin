@@ -38,7 +38,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -89,7 +88,8 @@ public class GeneratorServiceImpl implements GeneratorService {
                 "where table_schema = (select database()) and table_name like :table";
         Query queryCount = em.createNativeQuery(countSql);
         queryCount.setParameter("table", StringUtils.isNotBlank(name) ? ("%" + name + "%") : "%%");
-        BigInteger totalElements = (BigInteger) queryCount.getSingleResult();
+        // Hibernate 6 将 count 结果映射为 Long（Hibernate 5 为 BigInteger），统一按 Number 处理
+        Number totalElements = (Number) queryCount.getSingleResult();
         return PageUtil.toPage(tableInfos, totalElements.longValue());
     }
 
